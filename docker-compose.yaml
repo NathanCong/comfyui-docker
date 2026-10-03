@@ -1,5 +1,6 @@
 services:
   comfyui:
+    container_name: comfyui
     build:
       context: .
       args:
@@ -9,7 +10,7 @@ services:
         TORCH_VERSION: "2.7.1"
         TORCH_VISION_VERSION: "0.22.1"
         TORCH_AUDIO_VERSION: "2.7.1"
-    image: comfyui-multigpu:v100
+    image: comfyui:20261003
     ports:
       - "8188:8188"
     environment:

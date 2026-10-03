@@ -1,0 +1,33 @@
+services:
+  comfyui:
+    build:
+      context: .
+      args:
+        COMFYUI_REF: master
+        MULTIGPU_REPO: https://github.com/pollockjj/ComfyUI-MultiGPU.git
+        MULTIGPU_REF: main
+        TORCH_VERSION: "2.7.1"
+        TORCH_VISION_VERSION: "0.22.1"
+        TORCH_AUDIO_VERSION: "2.7.1"
+    image: comfyui-multigpu:v100
+    ports:
+      - "8188:8188"
+    environment:
+      NVIDIA_VISIBLE_DEVICES: all
+      NVIDIA_DRIVER_CAPABILITIES: compute,utility,video
+      COMFYUI_PORT: "8188"
+      COMFYUI_CUDA_DEVICE: all
+      COMFYUI_EXTRA_ARGS: ""
+    volumes:
+      - ./volumes/models:/opt/ComfyUI/models
+      - ./volumes/input:/opt/ComfyUI/input
+      - ./volumes/output:/opt/ComfyUI/output
+      - ./volumes/user:/opt/ComfyUI/user
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    restart: unless-stopped

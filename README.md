@@ -1,6 +1,6 @@
 # comfyui-docker
 
-Docker 部署 ComfyUI（多 GPU 方案）
+Docker 部署 ComfyUI（NVIDIA Tesla V100 多 GPU 方案）
 
 ## 启动服务
 

@@ -102,10 +102,7 @@ RUN pip install --upgrade pip setuptools wheel \
         "torch==${TORCH_VERSION}" \
         "torchvision==${TORCH_VISION_VERSION}" \
         "torchaudio==${TORCH_AUDIO_VERSION}" \
-        --index-url https://download.pytorch.org/whl/cu118 \
-    && if [ -f custom_nodes/ComfyUI-MultiGPU/pyproject.toml ]; then \
-            pip install -e custom_nodes/ComfyUI-MultiGPU; \
-       fi
+        --index-url https://download.pytorch.org/whl/cu118
 
 #
 # 生成启动脚本
